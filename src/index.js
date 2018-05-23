@@ -14,6 +14,7 @@ const templates = {
   postItem: document.querySelector('#post-item').content,
   postContent: document.querySelector('#post-content').content,
   login: document.querySelector('#login').content,
+  postForm: document.querySelector('#post-form').content,    
 }
 
 
@@ -75,11 +76,34 @@ async function loginPage(){
       const res = await postAPI.post('http://localhost:3000/users/login', payload);
       localStorage.setItem('token', res.data.token);
       postAPI.defaults.headers['Authorization'] = `Bearer ${res.data.token}`;
-      rootEl.classList.add('.root');~~
+      rootEl.classList.add('.root--authed');
       indexPage();
   })
   render(fragment);
 }
+
+async function postFormPage() {
+    const fragment= document.importNode(templates.postForm, true);
+    fragment.querySelector('.post-form__back-btn').addEventListener('click', e =>{
+        e.preventDefault();
+        indexPage();
+    })
+
+    fragment.querySelector('.post-form').addEventListener('submit', async e => {
+      e.preventDefault();    
+      const payload = {
+              title: e.target.elements.title.value,
+              body: e.target.elements.body.value
+          };
+          const res = await postAPI.post('http://localhost:3000/posts', payload);
+          console.log(res);
+          postContentPage(res.data.id);
+    })
+
+
+    render(fragment);
+}
+
 indexPage();
 
 
