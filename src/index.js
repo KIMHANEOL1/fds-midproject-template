@@ -3,11 +3,19 @@ import axios from 'axios';
 const postAPI = axios.create({});
 const rootEl = document.querySelector('.root');
 
-if(localStorage.getItem('token')) {
-  postAPI.dafaults.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-  rootEl.classList.add('root--authed');
+//로그인 코드중복제거
+function login(token){
+  localStorage.setItem('token', token);
+  postAPI.defaults.headers['Authorization'] = `Bearer ${token}`;
+  rootEl.classList.add('.root--authed');
 }
 
+//로그아웃 코드중복제거
+function logout(){
+  localStorage.removeItem('token');
+  delete postAPI.defaults.headers['Authorization'];
+  rootEl.classList.remove('root--authed');
+}
 
 const templates = {
   postList: document.querySelector('#post-list').content,
@@ -28,13 +36,11 @@ async function indexPage() {
     const listFragment = document.importNode(templates.postList, true);  
     
     listFragment.querySelector('.post-list__login-btn').addEventListener('click', e=>{
-      loginPage();
+      loginPage();           //로그인 코드중복제거
     })
 
     listFragment.querySelector('.post-list__logout-btn').addEventListener('click', e=>{
-      localStorage.removeItem('token');
-      delete postAPI.defaults.headers['Authorization'];
-      rootEl.classList.remove('root--authed');
+      logout();              //로그아웃 코드중복제거
       indexPage();
     })
 
@@ -74,9 +80,7 @@ async function loginPage(){
       };
       e.preventDefault();
       const res = await postAPI.post('http://localhost:3000/users/login', payload);
-      localStorage.setItem('token', res.data.token);
-      postAPI.defaults.headers['Authorization'] = `Bearer ${res.data.token}`;
-      rootEl.classList.add('.root--authed');
+      login(res.data.token);
       indexPage();
   })
   render(fragment);
@@ -103,6 +107,12 @@ async function postFormPage() {
 
     render(fragment);
 }
+
+
+if(localStorage.getItem('token')) {
+  login(localStorage.getItem('token'));
+}
+
 
 indexPage();
 
