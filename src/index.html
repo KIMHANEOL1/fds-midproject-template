@@ -8,49 +8,63 @@
   <link rel="stylesheet" href="./index.scss">
 </head>
 <body>
- <div class="root root--authed"></div>
- 
+  <div class="root"></div>
+
   <template id="post-list">
-      <h1>게시글 목록</h1>>
-      <button class="post-list__login-btn">로그인</button>
-      <button class="post-list__new-post-btn">새 글 쓰기</button>
-      <button class="post-list__logout-btn">로그아웃</button>
-      <div class="post-list"></div>
+    <h1>게시글 목록</h1>
+    <button class="post-list__login-btn">로그인</button>
+    <button class="post-list__new-post-btn">새 글 쓰기</button>
+    <button class="post-list__logout-btn">로그아웃</button>
+    <div class="post-list"></div>
   </template>
-  
 
   <template id="post-item">
-      <p class="post-item__title"></p>
+    <p class="post-item__author"></p>
+    <p class="post-item__title"></p>
   </template>
 
   <template id="post-content">
-    <div class-"post-content">
-      <button class="post-content__back-btn">뒤로가기</button>
+    <div class="post-content">
+      <button class="post-content__back-btn">뒤로 가기</button>
       <h2 class="post-content__title"></h2>
-      <p class="post-content__body"></p>      
+      <p class="post-content__body"></p>
     </div>
-  </template>>
+  </template>
 
   <template id="login">
     <div class="login">
       <h1 class="login__title">로그인</h1>
       <form class="login__form">
-        <input type="username" type="text" class="login__username">
-        <input type="password" type="passwoed" class="login__password">
+        <input name="username" type="text" class="login__username">
+        <input name="password" type="password" class="login__password">
         <button type="submit">전송</button>
       </form>
     </div>
   </template>
 
   <template id="post-form">
-      <form class="post-form">
-          <h1 class="post-form__header">새 글 쓰기</h1>
-          <input neme="title" type="text" class="post-form__title">
-          <textarea name="body" class="post-form__body"></textarea>
-          <button class="post-form__submit-btn">전송</button>
-          <button class="post-form__back-btn">뒤로가기</button>
-      </form>  
+    <form class="post-form">
+      <h1 class="post-form__header">새 글 쓰기</h1>
+      <input name="title" type="text" class="post-form__title">
+      <textarea name="body" class="post-form__body"></textarea>
+      <button class="post-form__submit-btn">전송</button>
+      <button class="post-form__back-btn">뒤로 가기</button>
+    </form>
   </template>
+
+<template id="comments">
+  <div class="comments__list">
+  </div>
+  <form class="comments__form">
+    <input name="body" type="text" class="comments__body-input">
+    <button class="comments__submit-btn">전송</button> 
+  </form>
+</template>
+
+<template id="comment-item">
+  <p class="comment-item__body"></p>
+</template>
+
 
   <script src="./index.js"></script>
 </body>

@@ -1,24 +1,43 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "fds"
-      }
-    ],
-    "posts": [
-      {
-        "id": 1,
-        "userId": 1,
-        "title": "Hello FDS JSON Server :)",
-        "body": "..."
-      }
-    ],
-    "comments": [
-      {
-        "id": 1,
-        "userId": 1,
-        "postId": 1,
-        "body": "🍺🎉"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "username": "fds",
+      "hashedPassword": "$2a$10$/lf2BTfJisIO6gjCEF8HCuDkveJElSEg1KJ9Eft/3qNKAm6dp.U2W"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Hello FDS JSON Server :)",
+      "body": "..."
+    },
+    {
+      "title": "제목",
+      "body": "내용",
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "title": "새글쓰기1",
+      "body": "12341234",
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "title": "새글쓰기2",
+      "body": "56785678\n",
+      "userId": 1,
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "userId": 1,
+      "postId": 1,
+      "body": "🍺🎉"
+    }
+  ]
+}
