@@ -78,11 +78,9 @@ async function postContentPage(postId) {
   fragment.querySelector('.post-content__body').textContent = res.data.body;
   fragment.querySelector('.post-content__back-btn').addEventListener('click', e => {
     indexPage();
-  })
+  });
 
-  render(fragment);
-}
-
+  
 
 //추가
 if(localStorage.getItem('token')) {
@@ -106,7 +104,7 @@ commentsRes.data.forEach(comment => {
   }
   
   render(fragment);
-
+}
 
 async function loginPage() {
   const fragment = document.importNode(templates.login, true);
